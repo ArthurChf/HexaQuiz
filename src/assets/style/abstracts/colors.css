@@ -1,0 +1,14 @@
+body {
+    --color-black: #27272b;
+    --color-white: #ffffff;
+    --color-primary-1: #6949ff;
+    --color-primary-2: #563cd2;
+    --color-red-1: #f75555;
+    --color-red-2: #eb1f5f;
+    --color-blue-1: #3779ff;
+    --color-blue-2: #295ece;
+    --color-orange-1: #ff981f;
+    --color-orange-2: #f38601;
+    --color-green-1: #12d18e;
+    --color-green-2: #00b777;
+}
