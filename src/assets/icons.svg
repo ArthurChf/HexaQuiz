@@ -2,4 +2,13 @@
     <symbol id="CHECK" viewBox="0 0 24 24" fill="currentColor">
         <path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path>
     </symbol>
+
+    <symbol id="ARROW_LEFT" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"></path>
+    </symbol>
+
+    <symbol id="HEART" viewBox="0 0 24 24">
+        <path stroke-width="2" fill="none" d="M16.5 3C19.5376 3 22 5.5 22 9C22 16 14.5 20 12 21.5C9.5 20 2 16 2 9C2 5.5 4.5 3 7.5 3C9.35997 3 11 4 12 5C13 4 14.64 3 16.5 3Z"></path>
+        <path fill="currentColor" stroke="none" d="M16.5 3C19.5376 3 22 5.5 22 9C22 16 14.5 20 12 21.5C9.5 20 2 16 2 9C2 5.5 4.5 3 7.5 3C9.35997 3 11 4 12 5C13 4 14.64 3 16.5 3Z"></path>
+    </symbol>
 </svg>

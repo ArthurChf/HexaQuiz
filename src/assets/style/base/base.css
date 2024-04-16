@@ -21,3 +21,24 @@ html {
 .fade-leave-from {
     opacity: 1;
 }
+
+
+.scrollbar::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+.scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+}
+.scrollbar::-webkit-scrollbar-thumb {
+    background: #b1aeae;
+}
+.scrollbar::-webkit-scrollbar-thumb:hover,
+.scrollbar::-webkit-scrollbar-thumb:active {
+    background: #bbbdc4;
+}
+.scrollbar::-webkit-scrollbar-track,
+.scrollbar::-webkit-scrollbar-track:hover,
+.scrollbar::-webkit-scrollbar-track:active {
+    background: #f1f1f1;
+}
