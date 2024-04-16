@@ -8,6 +8,7 @@ import './assets/style/base/reset.css';
 import './assets/style/base/base.css';
 import './assets/style/components/alert.css';
 import './assets/style/components/button.css';
+import './assets/style/layouts/default.css';
 import './assets/style/pages/home.css';
 
 import App from './App.vue';
