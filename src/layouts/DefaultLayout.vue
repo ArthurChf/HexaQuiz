@@ -18,7 +18,7 @@
                     <div class="progress-bar__content"></div>
                 </div>
             </div>
-            <div class="time-left">10</div>
+            <AppTimer />
         </div>
         <div class="content scrollbar">
             <RouterView #default="{ Component }">
@@ -36,6 +36,7 @@
 import { IconEnum } from '@/enums/IconEnum';
 import { TransitionEnum } from '@/enums/TransitionEnum';
 import AppIcon from '@/components/AppIcon.vue';
+import AppTimer from '@/components/AppTimer.vue';
 import { RouteEnum } from '@/enums/RouteEnum';
 import { ref } from 'vue';
 
