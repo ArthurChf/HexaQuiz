@@ -1,9 +1,5 @@
 <template>
-    <div style="display: flex; flex-direction: column; row-gap: 1rem;">
-        <AppButton color="red">Rouge</AppButton>
-        <AppButton color="blue">Bleu</AppButton>
-        <AppButton color="orange">Orange</AppButton>
-        <AppButton color="green">Vert</AppButton>
+    <div class="home">
         <div class="game-modes">
             <AppLevelButton :icon="IconEnum.PLAY" :to="RouteEnum.HOME" color="blue">
                 <template #title>Jouer</template>
@@ -18,7 +14,6 @@
 </template>
 
 <script setup lang="ts">
-import AppButton from '@/components/AppButton.vue';
 import AppLevelButton from '@/components/AppLevelButton.vue';
 import { IconEnum } from '@/enums/IconEnum';
 import { RouteEnum } from '@/enums/RouteEnum';

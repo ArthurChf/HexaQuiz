@@ -1,5 +1,6 @@
 .level-button {
     display: flex;
+    flex-direction: column;
     align-items: stretch;
     text-decoration: none;
     overflow: hidden;
@@ -16,7 +17,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 1.4rem;
+    padding: 0.5rem;
     flex-shrink: 0;
 }
 
@@ -78,4 +79,28 @@
     color: var(--color-light-black);
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-semibold);
+}
+
+@include breakpoint($breakpoint-xs) {
+    .level-button {
+        flex-direction: row;
+    }
+
+    .level-button .icon-container {
+        padding: 0 1.4rem;
+    }
+}
+
+@include breakpoint($breakpoint-lg) {
+    .level-button {
+        width: 50%;
+    }
+    .level-button .icon-container .icon-circle {
+        width: 4.2rem;
+        height: 4.2rem;
+    }
+    .level-button .icon-container .icon-circle svg {
+        height: 15px !important;
+        width: 15px !important;
+    }
 }
