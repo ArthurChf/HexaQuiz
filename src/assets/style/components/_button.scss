@@ -1,5 +1,5 @@
 .button-container {
-    height: 3.3rem;
+    height: 3.5rem;
 }
 
 .button {
@@ -16,10 +16,10 @@
     outline: none;
     width: 100%;
     border: none;
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-lg);
     border-bottom: 0.4rem solid;
     will-change: border-width, transform, outline;
-    transition: 0.1s outline;   
+    transition: 0.3s outline;   
 }
 .button:active {
     animation: buttonShake 0.15s forwards;
