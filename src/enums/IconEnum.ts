@@ -1,5 +1,7 @@
 export enum IconEnum {
     CHECK = 'CHECK',
     ARROW_LEFT = 'ARROW_LEFT',
-    HEART = 'HEART'
+    HEART = 'HEART',
+    PLAY = 'PLAY',
+    LEARN = 'LEARN'
 }

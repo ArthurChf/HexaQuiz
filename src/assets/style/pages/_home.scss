@@ -1,0 +1,22 @@
+.game-modes {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+}
+
+@include breakpoint($breakpoint-md) {
+    .game-modes {
+        flex-direction: row;
+    }
+    .game-modes .level-button {
+        width: 50%;
+    }
+    .game-modes .level-button .icon-container .icon-circle {
+        width: 4.2rem;
+        height: 4.2rem;
+    }
+    .game-modes .level-button .icon-container .icon-circle svg {
+        height: 15px !important;
+        width: 15px !important;
+    }
+}

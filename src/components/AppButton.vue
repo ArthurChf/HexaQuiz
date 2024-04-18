@@ -13,9 +13,10 @@
 import AppIcon from '@/components/AppIcon.vue';
 import { IconEnum } from '@/enums/IconEnum';
 import { TransitionEnum } from '@/enums/TransitionEnum';
+import type { ColorType } from '@/types/ColorType';
 
 defineProps<{
-    color: 'red' | 'blue' | 'orange' | 'green';
+    color: ColorType;
 }>();
 
 const isChecked = defineModel<boolean>({
