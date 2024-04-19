@@ -1,5 +1,5 @@
 <template>
-    <RouterLink :to="to" role="button" type="button" class="level-button">
+    <RouterLink :to="to" role="button" type="button" class="home-button">
         <div class="icon-container" :class="`color--${color}`">
             <div class="icon-circle">
                 <AppIcon :name="icon" size="12" />

@@ -1,4 +1,4 @@
-.level-button {
+.home-button {
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -8,12 +8,12 @@
     border: 0.15rem solid var(--color-gray);
     transition: 0.3s background-color, 0.3s border;
 }
-.level-button:hover {
+.home-button:hover {
     background-color: var(--color-gray);
     border: 0.15rem solid var(--color-dark-gray);
 }
 
-.level-button .icon-container {
+.home-button .icon-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,24 +21,24 @@
     flex-shrink: 0;
 }
 
-.level-button .icon-container.color--red {
+.home-button .icon-container.color--red {
     background-color: var(--color-red-1);
     color: var(--color-red-2);
 }
-.level-button .icon-container.color--blue {
+.home-button .icon-container.color--blue {
     background-color: var(--color-blue-1);
     color: var(--color-blue-2);
 }
-.level-button .icon-container.color--orange {
+.home-button .icon-container.color--orange {
     background-color: var(--color-orange-1);
     color: var(--color-orange-2);
 }
-.level-button .icon-container.color--green {
+.home-button .icon-container.color--green {
     background-color: var(--color-green-1);
     color: var(--color-green-2);
 }
 
-.level-button .icon-container .icon-circle {
+.home-button .icon-container .icon-circle {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,20 +47,20 @@
     color: var(--color-white);
     border-radius: 100%;
 }
-.level-button .icon-container.color--red .icon-circle {
+.home-button .icon-container.color--red .icon-circle {
     background-color: var(--color-red-2);
 }
-.level-button .icon-container.color--blue .icon-circle {
+.home-button .icon-container.color--blue .icon-circle {
     background-color: var(--color-blue-2);
 }
-.level-button .icon-container.color--orange .icon-circle {
+.home-button .icon-container.color--orange .icon-circle {
     background-color: var(--color-orange-2);
 }
-.level-button .icon-container.color--green .icon-circle {
+.home-button .icon-container.color--green .icon-circle {
     background-color: var(--color-green-2);
 }
 
-.level-button .text {
+.home-button .text {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -69,37 +69,37 @@
     font-family: var(--font-family-1);
 }
 
-.level-button .text h2 {
+.home-button .text h2 {
     color: var(--color-black);
     font-size: var(--font-size-2xl);
     font-weight: var(--font-weight-extrabold);
 }
 
-.level-button .text p {
+.home-button .text p {
     color: var(--color-light-black);
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-semibold);
 }
 
 @include breakpoint($breakpoint-xs) {
-    .level-button {
+    .home-button {
         flex-direction: row;
     }
 
-    .level-button .icon-container {
+    .home-button .icon-container {
         padding: 0 1.4rem;
     }
 }
 
 @include breakpoint($breakpoint-lg) {
-    .level-button {
+    .home-button {
         width: 50%;
     }
-    .level-button .icon-container .icon-circle {
+    .home-button .icon-container .icon-circle {
         width: 4.2rem;
         height: 4.2rem;
     }
-    .level-button .icon-container .icon-circle svg {
+    .home-button .icon-container .icon-circle svg {
         height: 15px !important;
         width: 15px !important;
     }
