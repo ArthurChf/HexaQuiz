@@ -10,6 +10,10 @@
                 <template #description>Explore les départements français à travers une expérience éducative divisée par niveaux</template>
             </AppHomeButton>
         </div>
+        <AppHomeButton :icon="IconEnum.STATS" :to="RouteEnum.HOME" color="orange">
+            <template #title>Statistiques</template>
+            <template #description>Consulte tes statistiques, elles représentent tes performances en jeu (pourcentage de réussite, nombre de points, temps moyen par question)</template>
+        </AppHomeButton>
     </div>
 </template>
 

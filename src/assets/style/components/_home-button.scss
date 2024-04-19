@@ -92,9 +92,6 @@
 }
 
 @include breakpoint($breakpoint-lg) {
-    .home-button {
-        width: 50%;
-    }
     .home-button .icon-container .icon-circle {
         width: 4.2rem;
         height: 4.2rem;
