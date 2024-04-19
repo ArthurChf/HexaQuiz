@@ -114,7 +114,7 @@
     font-family: var(--font-family-1);
 }
 
-.header .previous-button {
+.header .header__button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -122,14 +122,14 @@
     color: var(--color-black);
     border-radius: 0.8rem;
     border: 0.15rem solid transparent;
-    padding: 0.6rem 0.8rem;
+    padding: 0.9rem;
     transition: 0.2s border;
 }
-.header .previous-button:hover {
+.header .header__button:hover {
     border: 0.15rem solid var(--color-dark-gray);
 }
 
-.header .progress {
+.header .header__progress {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -137,7 +137,7 @@
     row-gap: 1.5rem;
 }
 
-.header .progress .lives {
+.header .header__progress .lives {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -145,11 +145,11 @@
     color: var(--color-red-1);
 }
 
-.header .progress .lives .life--empty {
+.header .header__progress .lives .life--empty {
     color: var(--color-dark-gray);
 }
 
-.header .progress .progress-bar__container {
+.header .header__progress .progress-bar__container {
     position: relative;
     overflow: hidden;
     opacity: 1;
@@ -159,7 +159,7 @@
     height: 0.6rem;
 }
 
-.header .progress .progress-bar__container .progress-bar__content {
+.header .header__progress .progress-bar__container .progress-bar__content {
     border-radius: inherit;
     height: inherit;
     width: 65%;

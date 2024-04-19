@@ -3,5 +3,7 @@ export enum IconEnum {
     ARROW_LEFT = 'ARROW_LEFT',
     HEART = 'HEART',
     PLAY = 'PLAY',
-    LEARN = 'LEARN'
+    LEARN = 'LEARN',
+    SETTINGS = 'SETTINGS',
+    HELP = 'HELP'
 }

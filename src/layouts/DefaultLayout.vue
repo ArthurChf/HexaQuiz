@@ -7,10 +7,10 @@
             </div>
         </div>
         <div class="header">
-            <RouterLink :to="RouteEnum.HOME" class="previous-button" role="button">
-                <AppIcon :name="IconEnum.ARROW_LEFT" size="10" />
+            <RouterLink :to="RouteEnum.HOME" class="header__button" role="button">
+                <AppIcon :name="isHomeRoute ? IconEnum.SETTINGS : IconEnum.ARROW_LEFT" size="12" />
             </RouterLink>
-            <div class="progress">
+            <div v-if="!isHomeRoute" class="header__progress">
                 <div class="lives">
                     <AppIcon v-for="life in 3" :key="life" :name="IconEnum.HEART" size="15" :class="life <= remainingLives ? '' : 'life--empty'" />
                 </div>
@@ -18,7 +18,13 @@
                     <div class="progress-bar__content"></div>
                 </div>
             </div>
-            <AppTimer />
+            <div v-else>
+                <AppImage :name="ImageEnum.LOGO" size="200" />
+            </div>
+            <AppTimer v-if="!isHomeRoute" />
+            <RouterLink v-else :to="RouteEnum.HOME" class="header__button" role="button">
+                <AppIcon :name="IconEnum.HELP" size="12" />
+            </RouterLink>
         </div>
         <div class="content scrollbar">
             <RouterView #default="{ Component }">
@@ -38,7 +44,12 @@ import { TransitionEnum } from '@/enums/TransitionEnum';
 import AppIcon from '@/components/AppIcon.vue';
 import AppTimer from '@/components/AppTimer.vue';
 import { RouteEnum } from '@/enums/RouteEnum';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+import { useRoute } from 'vue-router';
+import AppImage from '@/components/AppImage.vue';
+import { ImageEnum } from '@/enums/ImageEnum';
 
 const remainingLives = ref(3);
+const route = useRoute();
+const isHomeRoute = computed(() => route.fullPath === RouteEnum.HOME);
 </script>
