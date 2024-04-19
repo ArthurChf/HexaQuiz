@@ -1,14 +1,14 @@
 <template>
     <div class="default-layout">
         <div class="loading-screen">
-            <img src="@/assets/images/logo.png" alt="Logo" />
+            <AppImage :name="ImageEnum.LOGO" alt="Logo" />
             <div class="progress-bar__container">
                 <div class="progress-bar__content"></div>
             </div>
         </div>
         <div class="header">
             <RouterLink :to="RouteEnum.HOME" class="header__button" role="button">
-                <AppIcon :name="isHomeRoute ? IconEnum.SETTINGS : IconEnum.ARROW_LEFT" size="12" />
+                <AppIcon :name="isHomeRoute ? IconEnum.SETTINGS : IconEnum.ARROW_LEFT" size="13" />
             </RouterLink>
             <div v-if="!isHomeRoute" class="header__progress">
                 <div class="lives">
@@ -19,19 +19,17 @@
                 </div>
             </div>
             <div v-else>
-                <AppImage :name="ImageEnum.LOGO" size="200" />
+                ****todo
             </div>
             <AppTimer v-if="!isHomeRoute" />
             <RouterLink v-else :to="RouteEnum.HOME" class="header__button" role="button">
-                <AppIcon :name="IconEnum.HELP" size="12" />
+                <AppIcon :name="IconEnum.HELP" size="13" />
             </RouterLink>
         </div>
         <div class="content scrollbar">
             <RouterView #default="{ Component }">
                 <Transition :name="TransitionEnum.FADE" mode="out-in">
-                    <KeepAlive>
-                        <component :is="Component" />
-                    </KeepAlive>
+                    <component :is="Component" />
                 </Transition>
             </RouterView>
         </div>

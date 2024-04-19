@@ -11,12 +11,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onUnmounted, ref } from 'vue';
 
 const timerWidth = ref('3.2rem');
 const timerStrokeWidth = ref('0.66rem');
 
-const PATH_DEFAULT_TRANSITION = '1s linear all';
+const PATH_DEFAULT_TRANSITION = '1s linear stroke-dasharray';
 const timerPathTransition = ref(PATH_DEFAULT_TRANSITION);
 
 const TIME_LIMIT = 10;
@@ -56,6 +56,10 @@ function start() {
 }
 
 start();
+
+onUnmounted(() => {
+    clearInterval(timerInterval);
+});
 </script>
 
 <style lang="css" scoped>

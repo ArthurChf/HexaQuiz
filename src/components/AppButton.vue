@@ -1,25 +1,25 @@
 <template>
-    <div class="button-container">
-        <button role="button" type="button" class="button" :class="`button--${color}`" @click="isChecked = !isChecked">
-            <span><slot /></span>
-            <Transition :name="TransitionEnum.FADE">
-                <AppIcon v-if="isChecked" :name="IconEnum.CHECK" size="8" />
-            </Transition>
-        </button>
-    </div>
+    <RouterLink :to="to" role="button" type="button" class="button">
+        <div class="icon-container" :class="`color--${color}`">
+            <div class="icon-circle">
+                <AppIcon :name="icon" size="12" />
+            </div>
+        </div>
+        <div class="text">
+            <h2><slot name="title" /></h2>
+            <p><slot name="description" /></p>
+        </div>
+    </RouterLink>
 </template>
 
 <script setup lang="ts">
 import AppIcon from '@/components/AppIcon.vue';
-import { IconEnum } from '@/enums/IconEnum';
-import { TransitionEnum } from '@/enums/TransitionEnum';
+import type { IconEnum } from '@/enums/IconEnum';
 import type { ColorType } from '@/types/ColorType';
 
 defineProps<{
+    to: string;
+    icon: IconEnum;
     color: ColorType;
 }>();
-
-const isChecked = defineModel<boolean>({
-    default: false
-});
 </script>

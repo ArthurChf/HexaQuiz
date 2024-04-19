@@ -1,5 +1,6 @@
 import { RouteEnum } from '@/enums/RouteEnum';
 import Home from '@/views/Home.vue';
+import Levels from '@/views/Levels.vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
 
 const router = createRouter({
@@ -8,6 +9,10 @@ const router = createRouter({
         {
             component: Home,
             path: RouteEnum.HOME
+        },
+        {
+            component: Levels,
+            path: `${RouteEnum.LEVELS}/:mode`
         },
         { path: '/:pathMatch(.*)', redirect: '/' }
     ]

@@ -1,7 +1,7 @@
 .home {
     display: flex;
     flex-direction: column;
-    row-gap: 1rem;
+    row-gap: 1.3rem;
 }
 
 .game-modes {
@@ -14,7 +14,7 @@
     .game-modes {
         flex-direction: row;
     }
-    .game-modes .home-button {
+    .game-modes .button {
         width: 50%;
     }
 }
