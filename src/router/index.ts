@@ -14,7 +14,7 @@ const router = createRouter({
             component: Levels,
             path: `${RouteEnum.LEVELS}/:mode`
         },
-        { path: '/:pathMatch(.*)', redirect: '/' }
+        { path: '/:pathMatch(.*)', redirect: RouteEnum.HOME }
     ]
 });
 

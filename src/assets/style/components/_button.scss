@@ -14,32 +14,39 @@
     border: 0.15rem solid var(--color-dark-gray);
 }
 
-.button .icon-container {
+.button.button--full {
+    width: 100%;
+}
+
+.button .badge-container {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0.5rem;
     flex-shrink: 0;
+    font-size: 1.7rem;
+    font-weight: var(--font-weight-extrabold);
+    font-family: var(--font-family-1);
 }
 
-.button .icon-container.color--red {
+.button .badge-container.color--red {
     background-color: var(--color-red-1);
     color: var(--color-red-2);
 }
-.button .icon-container.color--blue {
+.button .badge-container.color--blue {
     background-color: var(--color-blue-1);
     color: var(--color-blue-2);
 }
-.button .icon-container.color--orange {
+.button .badge-container.color--orange {
     background-color: var(--color-orange-1);
     color: var(--color-orange-2);
 }
-.button .icon-container.color--green {
+.button .badge-container.color--green {
     background-color: var(--color-green-1);
     color: var(--color-green-2);
 }
 
-.button .icon-container .icon-circle {
+.button .badge-container .badge-circle {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,16 +55,16 @@
     color: var(--color-white);
     border-radius: 100%;
 }
-.button .icon-container.color--red .icon-circle {
+.button .badge-container.color--red .badge-circle {
     background-color: var(--color-red-2);
 }
-.button .icon-container.color--blue .icon-circle {
+.button .badge-container.color--blue .badge-circle {
     background-color: var(--color-blue-2);
 }
-.button .icon-container.color--orange .icon-circle {
+.button .badge-container.color--orange .badge-circle {
     background-color: var(--color-orange-2);
 }
-.button .icon-container.color--green .icon-circle {
+.button .badge-container.color--green .badge-circle {
     background-color: var(--color-green-2);
 }
 
@@ -87,17 +94,17 @@
         flex-direction: row;
     }
 
-    .button .icon-container {
+    .button .badge-container {
         padding: 0 1.4rem;
     }
 }
 
 @include breakpoint($breakpoint-lg) {
-    .button .icon-container .icon-circle {
+    .button .badge-container .badge-circle {
         width: 4.2rem;
         height: 4.2rem;
     }
-    .button .icon-container .icon-circle svg {
+    .button .badge-container .badge-circle svg {
         height: 15px !important;
         width: 15px !important;
     }

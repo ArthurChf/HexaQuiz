@@ -1,0 +1,22 @@
+.levels-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5rem;
+}
+
+.levels-container .levels-row {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+}
+
+@include breakpoint($breakpoint-lg) {
+    .levels-container .levels-row {
+        flex-direction: row;
+        align-items: center;
+    }
+    .levels-container .levels-row .button:not(.button--full) {
+        width: 50%;
+    }
+}

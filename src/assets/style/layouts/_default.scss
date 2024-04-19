@@ -1,18 +1,16 @@
 .default-layout {
     display: flex;
     flex-direction: column;
-    row-gap: 2.5rem;
+    row-gap: 3rem;
     padding: 1.5rem 2rem;
     background-color: var(--color-white);
-    width: 100vw;
-    height: 100vh;
     max-width: 80em;
     margin: 0 auto;
 }
 
 .loading-screen {
     z-index: var(--z-loading-screen);
-    position: absolute;
+    position: fixed;
     background-color: var(--color-white);
     top: 0;
     left: 0;
@@ -130,6 +128,10 @@
     border: 0.15rem solid var(--color-dark-gray);
 }
 
+.header .header__title {
+    font-size: var(--font-size-3xl);
+}
+
 .header .header__progress {
     display: flex;
     flex-direction: column;
@@ -165,4 +167,9 @@
     height: inherit;
     width: 65%;
     background-color: var(--color-primary-1);
+}
+
+.default-layout .content {
+    height: calc(100vh - 12rem);
+    overflow-y: auto;
 }

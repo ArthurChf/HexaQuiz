@@ -10,7 +10,7 @@
             <RouterLink :to="RouteEnum.HOME" class="header__button" role="button">
                 <AppIcon :name="isHomeRoute ? IconEnum.SETTINGS : IconEnum.ARROW_LEFT" size="13" />
             </RouterLink>
-            <div v-if="!isHomeRoute" class="header__progress">
+            <div v-if="isInGame" class="header__progress">
                 <div class="lives">
                     <AppIcon v-for="life in 3" :key="life" :name="IconEnum.HEART" size="15" :class="life <= remainingLives ? '' : 'life--empty'" />
                 </div>
@@ -18,10 +18,8 @@
                     <div class="progress-bar__content"></div>
                 </div>
             </div>
-            <div v-else>
-                ****todo
-            </div>
-            <AppTimer v-if="!isHomeRoute" />
+            <span v-else class="header__title">{{ pageTitle }}</span>
+            <AppTimer v-if="isInGame" />
             <RouterLink v-else :to="RouteEnum.HOME" class="header__button" role="button">
                 <AppIcon :name="IconEnum.HELP" size="13" />
             </RouterLink>
@@ -50,4 +48,12 @@ import { ImageEnum } from '@/enums/ImageEnum';
 const remainingLives = ref(3);
 const route = useRoute();
 const isHomeRoute = computed(() => route.fullPath === RouteEnum.HOME);
+const isInGame = computed(() => {
+    return route.fullPath === `${RouteEnum.PLAY}/:levelId`;
+});
+const pageTitle = computed(() => {
+    if (route.fullPath === RouteEnum.LEVELS_PLAY) return 'Jouer';
+    else if (route.fullPath === RouteEnum.LEVELS_LEARN) return 'Apprendre';
+    return 'HexaQuiz';
+});
 </script>

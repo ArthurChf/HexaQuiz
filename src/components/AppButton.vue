@@ -1,8 +1,8 @@
 <template>
     <RouterLink :to="to" role="button" type="button" class="button">
-        <div class="icon-container" :class="`color--${color}`">
-            <div class="icon-circle">
-                <AppIcon :name="icon" size="12" />
+        <div class="badge-container" :class="`color--${color}`">
+            <div class="badge-circle">
+                <slot name="badge" />
             </div>
         </div>
         <div class="text">
@@ -13,13 +13,10 @@
 </template>
 
 <script setup lang="ts">
-import AppIcon from '@/components/AppIcon.vue';
-import type { IconEnum } from '@/enums/IconEnum';
 import type { ColorType } from '@/types/ColorType';
 
 defineProps<{
     to: string;
-    icon: IconEnum;
     color: ColorType;
 }>();
 </script>
