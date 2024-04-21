@@ -8,7 +8,8 @@
 import AppLearnCard from '@/components/AppLearnCard.vue';
 import { useQuizData } from '@/composables/useQuizData';
 import { useRoute } from 'vue-router';
+import type { QuizDataType } from '@/types/QuizDataType';
 
 const route = useRoute();
-const learnCards = useQuizData(route.params.levelId as string) as { number: string; name: string }[];
+const learnCards = useQuizData(route.params.levelId as string) as QuizDataType[];
 </script>

@@ -2,6 +2,7 @@ import { RouteEnum } from '@/enums/RouteEnum';
 import Home from '@/views/Home.vue';
 import Learn from '@/views/Learn.vue';
 import Levels from '@/views/Levels.vue';
+import Play from '@/views/Play.vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
 
 const router = createRouter({
@@ -24,6 +25,14 @@ const router = createRouter({
             meta: {
                 previous: RouteEnum.LEVELS_LEARN,
                 page: RouteEnum.LEARN_PARAM
+            }
+        },
+        {
+            component: Play,
+            path: RouteEnum.PLAY_PARAM,
+            meta: {
+                previous: RouteEnum.LEVELS_PLAY,
+                page: RouteEnum.PLAY_PARAM
             }
         },
         { path: '/:pathMatch(.*)', redirect: RouteEnum.HOME }

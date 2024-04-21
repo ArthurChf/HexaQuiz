@@ -5,5 +5,6 @@ export enum RouteEnum {
     LEVELS_LEARN = '/levels/learn',
     PLAY = '/play',
     LEARN = '/learn',
+    PLAY_PARAM = '/play/:levelId',
     LEARN_PARAM = '/learn/:levelId'
 }

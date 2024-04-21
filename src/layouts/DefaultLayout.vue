@@ -10,12 +10,15 @@
             <RouterLink :to="pageData.previous" class="header__button" role="button">
                 <AppIcon :name="isHomeRoute ? IconEnum.SETTINGS : IconEnum.ARROW_LEFT" size="13" />
             </RouterLink>
-            <div v-if="isInGame" class="header__progress">
+            <div v-if="isInGame" class="header__center">
                 <div class="lives">
                     <AppIcon v-for="life in 3" :key="life" :name="IconEnum.HEART" size="15" :class="life <= remainingLives ? '' : 'life--empty'" />
                 </div>
-                <div class="progress-bar__container">
-                    <div class="progress-bar__content"></div>
+                <div class="header__progress">
+                    <div class="progress-bar__container">
+                        <div class="progress-bar__content"></div>
+                    </div>
+                    <span>{{ pageData.title }}</span>
                 </div>
             </div>
             <span v-else class="header__title">{{ pageData.title }}</span>
@@ -50,7 +53,7 @@ const remainingLives = ref(3);
 const route = useRoute();
 const isHomeRoute = computed(() => route.fullPath === RouteEnum.HOME);
 const isInGame = computed(() => {
-    return route.fullPath === `${RouteEnum.PLAY}/:levelId`;
+    return route.meta?.page === RouteEnum.PLAY_PARAM;
 });
 
 const routesData: Record<string, RouteDataType> = {
@@ -65,7 +68,7 @@ const pageData = computed(() => {
     const data = routesData?.[route.fullPath];
 
     let title = '';
-    if (route.meta?.page === RouteEnum.LEARN_PARAM) title = `Niveau ${route.params.levelId as string}`;
+    if (route.meta?.page === RouteEnum.LEARN_PARAM || route.meta?.page === RouteEnum.PLAY_PARAM) title = `Niveau ${route.params.levelId as string}`;
     else title = data?.title ?? 'HexaQuiz';
 
     let previous = '';
