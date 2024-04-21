@@ -1,7 +1,7 @@
 <template>
     <div class="levels-container">
         <div class="levels-row" v-for="(levels, rowIndex) in levelPairs" :key="rowIndex">
-            <AppButton v-for="level in levels" :key="level.index" :to="`${$route.params.mode}/${level.index}`" :color="level.color" :class="levels.length === 1 ? 'button--full' : ''">
+            <AppButton v-for="level in levels" :key="level.index" :to="`/${$route.params.mode}/${level.index}`" :color="level.color" :class="levels.length === 1 ? 'button--full' : ''">
                 <template #badge>{{ level.index }}</template>
                 <template #title>Niveau {{ level.index }}</template>
                 <template #description>Départements de {{ level.intervalStart }} à {{ level.intervalEnd }}</template>

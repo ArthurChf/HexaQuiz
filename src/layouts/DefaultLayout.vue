@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="header">
-            <RouterLink :to="RouteEnum.HOME" class="header__button" role="button">
+            <RouterLink :to="pageData.previous" class="header__button" role="button">
                 <AppIcon :name="isHomeRoute ? IconEnum.SETTINGS : IconEnum.ARROW_LEFT" size="13" />
             </RouterLink>
             <div v-if="isInGame" class="header__progress">
@@ -18,7 +18,7 @@
                     <div class="progress-bar__content"></div>
                 </div>
             </div>
-            <span v-else class="header__title">{{ pageTitle }}</span>
+            <span v-else class="header__title">{{ pageData.title }}</span>
             <AppTimer v-if="isInGame" />
             <RouterLink v-else :to="RouteEnum.HOME" class="header__button" role="button">
                 <AppIcon :name="IconEnum.HELP" size="13" />
@@ -44,6 +44,7 @@ import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import AppImage from '@/components/AppImage.vue';
 import { ImageEnum } from '@/enums/ImageEnum';
+import type { RouteDataType } from '@/types/RouteDataType';
 
 const remainingLives = ref(3);
 const route = useRoute();
@@ -51,9 +52,29 @@ const isHomeRoute = computed(() => route.fullPath === RouteEnum.HOME);
 const isInGame = computed(() => {
     return route.fullPath === `${RouteEnum.PLAY}/:levelId`;
 });
-const pageTitle = computed(() => {
-    if (route.fullPath === RouteEnum.LEVELS_PLAY) return 'Jouer';
-    else if (route.fullPath === RouteEnum.LEVELS_LEARN) return 'Apprendre';
-    return 'HexaQuiz';
+
+const routesData: Record<string, RouteDataType> = {
+    [RouteEnum.LEVELS_PLAY]: {
+        title: 'Jouer'
+    },
+    [RouteEnum.LEVELS_LEARN]: {
+        title: 'Apprendre'
+    }
+};
+const pageData = computed(() => {
+    const data = routesData?.[route.fullPath];
+
+    let title = '';
+    if (route.meta?.page === RouteEnum.LEARN_PARAM) title = `Niveau ${route.params.levelId as string}`;
+    else title = data?.title ?? 'HexaQuiz';
+
+    let previous = '';
+    if (route.meta?.previous) previous = route.meta.previous as RouteEnum;
+    else previous = data?.previous ?? RouteEnum.HOME;
+
+    return {
+        title,
+        previous
+    };
 });
 </script>
