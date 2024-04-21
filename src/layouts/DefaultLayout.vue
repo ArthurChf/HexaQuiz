@@ -28,6 +28,16 @@
             </RouterLink>
         </div>
         <div class="content scrollbar">
+            <Transition :name="TransitionEnum.FADE" mode="out-in">
+                <div class="lost-game" v-if="remainingLives === 0">
+                    <h2 class="lost-game__title">Perdu 😵</h2>
+                    <div class="lost-game__buttons">
+                        <AppGameButton color="primary" text="Accueil" @click="goToHome" />
+                        <AppGameButton color="red" text="Rejouer" @click="restartGame" />
+                    </div>
+                </div>
+            </Transition>
+
             <RouterView #default="{ Component }">
                 <Transition :name="TransitionEnum.FADE" mode="out-in">
                     <component :is="Component" />
@@ -43,13 +53,18 @@ import { TransitionEnum } from '@/enums/TransitionEnum';
 import AppIcon from '@/components/AppIcon.vue';
 import AppTimer from '@/components/AppTimer.vue';
 import { RouteEnum } from '@/enums/RouteEnum';
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import AppImage from '@/components/AppImage.vue';
 import { ImageEnum } from '@/enums/ImageEnum';
 import type { RouteDataType } from '@/types/RouteDataType';
+import { useAppStore } from '@/stores/appStore';
+import { storeToRefs } from 'pinia';
+import AppGameButton from '@/components/AppGameButton.vue';
+import router from '@/router';
 
-const remainingLives = ref(3);
+const appStore = useAppStore();
+const { remainingLives } = storeToRefs(appStore);
 const route = useRoute();
 const isHomeRoute = computed(() => route.fullPath === RouteEnum.HOME);
 const isInGame = computed(() => {
@@ -80,4 +95,10 @@ const pageData = computed(() => {
         previous
     };
 });
+const goToHome = async () => {
+    await router.push(RouteEnum.HOME);
+};
+const restartGame = () => {
+    router.go(0);
+};
 </script>

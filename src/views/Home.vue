@@ -25,4 +25,8 @@ import AppButton from '@/components/AppButton.vue';
 import AppIcon from '@/components/AppIcon.vue';
 import { IconEnum } from '@/enums/IconEnum';
 import { RouteEnum } from '@/enums/RouteEnum';
+import { useAppStore } from '@/stores/appStore';
+
+const appStore = useAppStore();
+appStore.resetLives();
 </script>

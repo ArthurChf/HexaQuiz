@@ -177,6 +177,34 @@
 }
 
 .default-layout .content {
+    position: relative;
     height: calc(100vh - 12rem);
     overflow-y: auto;
+}
+
+.default-layout .lost-game {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 3rem;
+    background-color: var(--color-white);
+    z-index: var(--z-lost-game);
+}
+
+.default-layout .lost-game .lost-game__title {
+    font-weight: var(--font-weight-bold);
+    font-family: var(--font-family-1);
+    font-size: var(--font-size-4xl);
+    color: var(--color-black);
+}
+.default-layout .lost-game .lost-game__buttons {
+    display: flex;
+    align-items: center;
+    column-gap: 2rem;
 }

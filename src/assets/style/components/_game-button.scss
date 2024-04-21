@@ -21,11 +21,16 @@
     will-change: border-width, transform, outline;
     transition: 0.3s outline;   
 }
-.game-button:active {
+.game-button:active:not(.game-button--disabled) {
     animation: buttonShake 0.15s forwards;
 }
 .game-button:focus-visible {
     outline: 0.12rem solid var(--color-black);
+}
+
+.game-button--disabled {
+    opacity: 0.5;
+    cursor: default;
 }
 
 .game-button--red {
@@ -43,6 +48,10 @@
 .game-button--green {
     background-color: var(--color-green-1);
     border-color: var(--color-green-2);
+}
+.game-button--primary {
+    background-color: var(--color-primary-1);
+    border-color: var(--color-primary-2);
 }
 
 @keyframes buttonShake {
