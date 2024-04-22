@@ -15,9 +15,7 @@
                     <AppIcon v-for="life in 3" :key="life" :name="IconEnum.HEART" size="15" :class="life <= remainingLives ? '' : 'life--empty'" />
                 </div>
                 <div class="header__progress">
-                    <div class="progress-bar__container">
-                        <div class="progress-bar__content"></div>
-                    </div>
+                    <AppProgressBar :width="quizProgress" />
                     <span>{{ pageData.title }}</span>
                 </div>
             </div>
@@ -29,11 +27,21 @@
         </div>
         <div class="content scrollbar">
             <Transition :name="TransitionEnum.FADE" mode="out-in">
-                <div class="lost-game" v-if="remainingLives === 0">
+                <div class="lost-game" v-if="isGameLost">
                     <h2 class="lost-game__title">Perdu 😵</h2>
                     <div class="lost-game__buttons">
                         <AppGameButton color="primary" text="Accueil" @click="goToHome" />
                         <AppGameButton color="red" text="Rejouer" @click="restartGame" />
+                    </div>
+                </div>
+            </Transition>
+
+            <Transition :name="TransitionEnum.FADE" mode="out-in">
+                <div class="won-game" v-if="isGameWon">
+                    <h2 class="won-game__title">Gagné 👏</h2>
+                    <div class="won-game__buttons">
+                        <AppGameButton color="primary" text="Accueil" @click="goToHome" />
+                        <AppGameButton v-if="nextLevel <= 11" color="orange" :text="`Prochain niveau (${nextLevel})`" @click="goToNextLevel" />
                     </div>
                 </div>
             </Transition>
@@ -62,10 +70,14 @@ import { useAppStore } from '@/stores/appStore';
 import { storeToRefs } from 'pinia';
 import AppGameButton from '@/components/AppGameButton.vue';
 import router from '@/router';
+import AppProgressBar from '@/components/AppProgressBar.vue';
 
 const appStore = useAppStore();
-const { remainingLives } = storeToRefs(appStore);
+const { quizProgress, remainingLives, isGameWon, isGameLost } = storeToRefs(appStore);
+
 const route = useRoute();
+const levelId = computed(() => route.params.levelId as string);
+
 const isHomeRoute = computed(() => route.fullPath === RouteEnum.HOME);
 const isInGame = computed(() => {
     return route.meta?.page === RouteEnum.PLAY_PARAM;
@@ -83,7 +95,7 @@ const pageData = computed(() => {
     const data = routesData?.[route.fullPath];
 
     let title = '';
-    if (route.meta?.page === RouteEnum.LEARN_PARAM || route.meta?.page === RouteEnum.PLAY_PARAM) title = `Niveau ${route.params.levelId as string}`;
+    if (route.meta?.page === RouteEnum.LEARN_PARAM || route.meta?.page === RouteEnum.PLAY_PARAM) title = `Niveau ${levelId.value}`;
     else title = data?.title ?? 'HexaQuiz';
 
     let previous = '';
@@ -100,5 +112,11 @@ const goToHome = async () => {
 };
 const restartGame = () => {
     appStore.restartGame();
+};
+
+const nextLevel = computed(() => +levelId.value + 1);
+const goToNextLevel = async () => {
+    appStore.restartGame(nextLevel.value.toString());
+    await router.push(`${RouteEnum.PLAY}/${nextLevel.value}`);
 };
 </script>

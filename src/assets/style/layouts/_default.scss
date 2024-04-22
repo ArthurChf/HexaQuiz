@@ -159,30 +159,14 @@
     row-gap: 0.5rem;
 }
 
-.header .header__center .progress-bar__container {
-    position: relative;
-    overflow: hidden;
-    opacity: 1;
-    background-color: var(--color-gray);
-    border-radius: 1rem;
-    width: 20rem;
-    height: 0.6rem;
-}
-
-.header .header__center .progress-bar__container .progress-bar__content {
-    border-radius: inherit;
-    height: inherit;
-    width: 65%;
-    background-color: var(--color-primary-1);
-}
-
 .default-layout .content {
     position: relative;
     height: calc(100vh - 12rem);
     overflow-y: auto;
 }
 
-.default-layout .lost-game {
+.default-layout .lost-game,
+.default-layout .won-game {
     position: absolute;
     top: 0;
     left: 0;
@@ -197,13 +181,16 @@
     z-index: var(--z-lost-game);
 }
 
-.default-layout .lost-game .lost-game__title {
+.default-layout .lost-game .lost-game__title,
+.default-layout .won-game .won-game__title {
     font-weight: var(--font-weight-bold);
     font-family: var(--font-family-1);
     font-size: var(--font-size-4xl);
     color: var(--color-black);
 }
-.default-layout .lost-game .lost-game__buttons {
+
+.default-layout .lost-game .lost-game__buttons,
+.default-layout .won-game .won-game__buttons {
     display: flex;
     align-items: center;
     column-gap: 2rem;

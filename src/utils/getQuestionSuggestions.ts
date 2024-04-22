@@ -1,4 +1,6 @@
+import { QuestionSuggestionType } from '@/types/QuestionSuggestionType';
 import type { QuizDataType } from '@/types/QuizDataType';
+import { ref } from 'vue';
 
 const possibleNumbers = [
     '01',
@@ -113,8 +115,21 @@ const possibleNumbers = [
     '989'
 ];
 
+const questionId = ref(0);
+
 export const getQuestionSuggestions = (question: QuizDataType) => {
     const answer = question.number;
-    const suggestions = possibleNumbers.filter((v) => v !== answer).toSorted(() => 0.5 - Math.random()).slice(0, 3);
-    return [answer, ...suggestions].toSorted(() => 0.5 - Math.random());
+    const suggestions = possibleNumbers
+        .filter((v) => v !== answer)
+        .toSorted(() => 0.5 - Math.random())
+        .slice(0, 3);
+
+    return [answer, ...suggestions]
+        .toSorted(() => 0.5 - Math.random())
+        .map<QuestionSuggestionType>((v) => {
+            return {
+                id: questionId.value++,
+                value: v
+            };
+        });
 };

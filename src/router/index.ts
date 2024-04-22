@@ -1,4 +1,5 @@
 import { RouteEnum } from '@/enums/RouteEnum';
+import { useAppStore } from '@/stores/appStore';
 import Home from '@/views/Home.vue';
 import Learn from '@/views/Learn.vue';
 import Levels from '@/views/Levels.vue';

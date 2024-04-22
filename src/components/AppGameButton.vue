@@ -23,18 +23,17 @@ const props = defineProps<{
     answer?: string;
 }>();
 
-const emit = defineEmits<(e: 'nextQuestion') => void>();
-
 const isDisabled = ref(false);
 const isChecked = ref(false);
+
+const appStore = useAppStore();
 
 const check = () => {
     if (isDisabled.value || isChecked.value || !props.answer) return;
 
     isChecked.value = true;
-    if (props.answer === props.text) emit('nextQuestion');
+    if (props.answer === props.text) appStore.nextQuestion();
     else {
-        const appStore = useAppStore();
         appStore.removeLife();
         isChecked.value = false;
         isDisabled.value = true;

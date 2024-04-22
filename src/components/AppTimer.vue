@@ -53,7 +53,7 @@ function start() {
         setCircleDasharray();
 
         if (timeLeft.value === 0) {
-            reset();
+            appStore.removeLife();
             appStore.nextQuestion();
         }
     }, 1000);
@@ -61,13 +61,18 @@ function start() {
 
 start();
 
+appStore.onFinishedGame(() => {
+    reset();
+});
+
 appStore.onRestartGame(() => {
     reset();
-    setTimeout(start, 1);
+    setTimeout(start, 100);
 });
 
 appStore.onNextQuestion(() => {
-    setTimeout(start, 1);
+    reset();
+    setTimeout(start, 100);
 });
 
 onUnmounted(() => {
