@@ -1,0 +1,16 @@
+.progress-bar__container {
+    position: relative;
+    overflow: hidden;
+    opacity: 1;
+    background-color: var(--color-gray);
+    border-radius: 1rem;
+    width: 20rem;
+    height: 0.6rem;
+}
+
+.progress-bar__container .progress-bar__content {
+    border-radius: inherit;
+    height: inherit;
+    background-color: var(--color-primary-1);
+    transition: 0.3s width;
+}
