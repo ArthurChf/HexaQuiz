@@ -13,11 +13,13 @@ import { useRoute } from 'vue-router';
 import type { QuizDataType } from '@/types/QuizDataType';
 import { getRandomQuestion } from '@/utils/getRandomQuestion';
 import { getQuestionSuggestions } from '@/utils/getQuestionSuggestions';
-import { reactive, ref } from 'vue';
+import { onUnmounted, reactive, ref } from 'vue';
 import AppGameButton from '@/components/AppGameButton.vue';
 import type { ColorType } from '@/types/ColorType';
+import { useAppStore } from '@/stores/appStore';
 
 const route = useRoute();
+const appStore = useAppStore();
 const questions = useQuizData(route.params.levelId as string) as QuizDataType[];
 const buttonColors: ColorType[] = ['red', 'blue', 'orange', 'green'];
 
@@ -33,4 +35,16 @@ const showQuestion = () => {
 };
 
 showQuestion();
+
+appStore.onNextQuestion(() => {
+    showQuestion();
+});
+
+appStore.onRestartGame(() => {
+    showQuestion();
+});
+
+onUnmounted(() => {
+    appStore.resetLives();
+});
 </script>

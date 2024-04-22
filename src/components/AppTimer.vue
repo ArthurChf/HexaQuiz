@@ -11,6 +11,7 @@
 </template>
 
 <script setup lang="ts">
+import { useAppStore } from '@/stores/appStore';
 import { onUnmounted, ref } from 'vue';
 
 const timerWidth = ref('3.2rem');
@@ -25,6 +26,8 @@ let timerInterval = -1;
 
 const FULL_DASH_ARRAY = 283;
 const timerPathRemaining = ref(`${FULL_DASH_ARRAY}`);
+
+const appStore = useAppStore();
 
 function calculateTimeFraction() {
     const rawTimeFraction = timeLeft.value / TIME_LIMIT;
@@ -51,11 +54,21 @@ function start() {
 
         if (timeLeft.value === 0) {
             reset();
+            appStore.nextQuestion();
         }
     }, 1000);
 }
 
 start();
+
+appStore.onRestartGame(() => {
+    reset();
+    setTimeout(start, 1);
+});
+
+appStore.onNextQuestion(() => {
+    setTimeout(start, 1);
+});
 
 onUnmounted(() => {
     clearInterval(timerInterval);

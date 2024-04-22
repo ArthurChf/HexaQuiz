@@ -99,6 +99,6 @@ const goToHome = async () => {
     await router.push(RouteEnum.HOME);
 };
 const restartGame = () => {
-    router.go(0);
+    appStore.restartGame();
 };
 </script>
