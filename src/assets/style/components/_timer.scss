@@ -1,0 +1,48 @@
+.timer-container {
+    position: relative;
+    width: 2.7rem;
+    height: 2.7rem;
+}
+
+.timer__svg {
+    width: 2.7rem;
+    height: 2.7rem;
+}
+
+.timer__circle {
+    fill: none;
+    stroke: none;
+}
+
+.timer__path-elapsed {
+    stroke-width: 0.66rem;
+    stroke: #d4d4d4;
+}
+
+.timer__path-remaining {
+    stroke-width: 0.66rem;
+    transform: rotate(90deg);
+    transform-origin: center;
+    fill-rule: nonzero;
+    stroke: #6949ff;
+}
+
+.timer__label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--color-black);
+    font-size: var(--font-size-xl);
+}
+
+@include breakpoint($breakpoint-xs) {
+    .timer-container {
+        width: 3.2rem;
+        height: 3.2rem;
+    }
+    .timer__svg {
+        width: 3.2rem;
+        height: 3.2rem;
+    }
+}

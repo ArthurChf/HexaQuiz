@@ -8,11 +8,11 @@
         </div>
         <div class="header">
             <RouterLink :to="pageData.previous" class="header__button" role="button">
-                <AppIcon :name="isHomeRoute ? IconEnum.SETTINGS : IconEnum.ARROW_LEFT" size="13" />
+                <AppIcon :name="isHomeRoute ? IconEnum.SETTINGS : IconEnum.ARROW_LEFT" size="10" />
             </RouterLink>
             <div v-if="isInGame" class="header__center">
                 <div class="lives">
-                    <AppIcon v-for="life in 3" :key="life" :name="IconEnum.HEART" size="15" :class="life <= remainingLives ? '' : 'life--empty'" />
+                    <AppIcon v-for="life in 3" :key="life" :name="IconEnum.HEART" size="13" class="life" :class="life <= remainingLives ? '' : 'life--empty'" />
                 </div>
                 <div class="header__progress">
                     <AppProgressBar :width="quizProgress" />
@@ -22,7 +22,7 @@
             <span v-else class="header__title">{{ pageData.title }}</span>
             <AppTimer v-if="isInGame" />
             <RouterLink v-else :to="RouteEnum.HOME" class="header__button" role="button">
-                <AppIcon :name="IconEnum.HELP" size="13" />
+                <AppIcon :name="IconEnum.HELP" size="10" />
             </RouterLink>
         </div>
         <div class="content scrollbar">

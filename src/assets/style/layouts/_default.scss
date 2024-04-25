@@ -106,11 +106,17 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    column-gap: 3rem;
+    column-gap: 0.7rem;
     padding: 1rem 0;
     height: 5rem;
     font-weight: var(--font-weight-bold);
     font-family: var(--font-family-1);
+}
+
+@include breakpoint($breakpoint-xs) {
+    .header {
+        column-gap: 3rem;
+    }
 }
 
 .header .header__button {
@@ -121,15 +127,32 @@
     color: var(--color-black);
     border-radius: 0.8rem;
     border: 0.15rem solid transparent;
-    padding: 1rem;
+    padding: 0.8rem;
     transition: 0.2s border;
 }
 .header .header__button:hover {
     border: 0.15rem solid var(--color-dark-gray);
 }
 
+@include breakpoint($breakpoint-xs) {
+    .header .header__button {
+        padding: 1rem;
+    }
+    .header .header__button .icon svg {
+        width: 13px !important;
+        height: 13px !important;
+    }
+}
+
 .header .header__title {
-    font-size: var(--font-size-3xl);
+    overflow: hidden;
+    font-size: var(--font-size-xl);
+}
+
+@include breakpoint($breakpoint-xs) {
+    .header .header__title {
+        font-size: var(--font-size-3xl);
+    }
 }
 
 .header .header__center {
@@ -138,6 +161,7 @@
     align-items: center;
     justify-content: center;
     row-gap: 1.5rem;
+    width: 100%;
 }
 
 .header .header__center .lives {
@@ -146,6 +170,13 @@
     justify-content: center;
     column-gap: 1.5rem;
     color: var(--color-red-1);
+}
+
+@include breakpoint($breakpoint-xs) {
+    .header .header__center .lives .life svg {
+        width: 15px !important;
+        height: 15px !important;
+    }
 }
 
 .header .header__center .lives .life--empty {
@@ -157,6 +188,7 @@
     flex-direction: column;
     align-items: center;
     row-gap: 0.5rem;
+    width: 100%;
 }
 
 .default-layout .content {
@@ -185,7 +217,7 @@
 .default-layout .won-game .won-game__title {
     font-weight: var(--font-weight-bold);
     font-family: var(--font-family-1);
-    font-size: var(--font-size-4xl);
+    font-size: var(--font-size-5xl);
     color: var(--color-black);
 }
 

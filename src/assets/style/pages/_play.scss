@@ -10,12 +10,24 @@
     font-weight: var(--font-weight-bold);
     font-size: var(--font-size-4xl);
     font-family: var(--font-family-1);
+    text-align: center;
 }
 
 .play__suggestions {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 1;
+    grid-template-columns: 1fr;
     grid-gap: 1rem;
     width: 100%;
+}
+
+@include breakpoint($breakpoint-xs) {
+    .play__suggestions {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@include breakpoint($breakpoint-md) {
+    .play__suggestions {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }

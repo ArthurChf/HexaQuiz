@@ -14,9 +14,6 @@
 import { useAppStore } from '@/stores/appStore';
 import { onUnmounted, ref } from 'vue';
 
-const timerWidth = ref('3.2rem');
-const timerStrokeWidth = ref('0.66rem');
-
 const PATH_DEFAULT_TRANSITION = '1s linear stroke-dasharray';
 const timerPathTransition = ref(PATH_DEFAULT_TRANSITION);
 
@@ -79,47 +76,3 @@ onUnmounted(() => {
     clearInterval(timerInterval);
 });
 </script>
-
-<style lang="css" scoped>
-.timer-container {
-    position: relative;
-    width: v-bind(timerWidth);
-    height: v-bind(timerWidth);
-}
-
-.timer__svg {
-    transform: scaleX(1);
-}
-
-.timer__circle {
-    fill: none;
-    stroke: none;
-}
-
-.timer__path-elapsed {
-    stroke-width: v-bind(timerStrokeWidth);
-    stroke: #d4d4d4;
-}
-
-.timer__path-remaining {
-    stroke-width: v-bind(timerStrokeWidth);
-    transform: rotate(90deg);
-    transform-origin: center;
-    fill-rule: nonzero;
-    stroke: #6949ff;
-}
-
-.timer__label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: v-bind(timerWidth);
-    height: v-bind(timerWidth);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-black);
-    font-size: var(--font-size-xl);
-}
-</style>
-
