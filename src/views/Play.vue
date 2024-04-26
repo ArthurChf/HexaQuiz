@@ -25,6 +25,8 @@ const currentLevel = ref(route.params.levelId as string);
 const questions = computed(() => useQuizData(currentLevel.value) as QuizDataType[]);
 const buttonColors: ColorType[] = ['red', 'blue', 'orange', 'green'];
 
+const eventsId = appStore.getNewEventsId();
+
 const isGameFinished = ref(false);
 const currentQuestion = reactive<QuizDataType>({
     name: '',
@@ -35,21 +37,23 @@ const suggestions = ref<QuestionSuggestionType[]>([]);
 const showQuestion = (level?: string) => {
     if (level) currentLevel.value = level;
     Object.assign(currentQuestion, getRandomQuestion(questions.value));
-    suggestions.value = getQuestionSuggestions(currentQuestion);
+
+    const levelQuestions = useQuizData(currentLevel.value) as QuizDataType[];
+    suggestions.value = getQuestionSuggestions(levelQuestions, currentQuestion.number);
 };
 
 appStore.onFinishedGame(() => {
     isGameFinished.value = true;
-});
+}, eventsId);
 
 appStore.onNextQuestion(() => {
     showQuestion();
-});
+}, eventsId);
 
 appStore.onRestartGame((level?: string) => {
     isGameFinished.value = false;
     showQuestion(level);
-});
+}, eventsId);
 
 onMounted(() => {
     appStore.nextQuestion();
@@ -57,5 +61,6 @@ onMounted(() => {
 
 onUnmounted(() => {
     appStore.resetLives();
+    appStore.removeEvents(eventsId);
 });
 </script>

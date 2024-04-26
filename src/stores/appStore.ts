@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
 export const useAppStore = defineStore('app', () => {
+    let eventsIds = 0;
     const MAX_LIVES = 3;
     const remainingLives = ref(MAX_LIVES);
     const MAX_QUESTIONS = 10;
@@ -10,9 +11,14 @@ export const useAppStore = defineStore('app', () => {
     const isGameWon = ref(false);
     const isGameLost = ref(false);
 
-    const restartGameCallbacks: ((level?: string) => void)[] = [];
-    const nextQuestionCallbacks: (() => void)[] = [];
-    const finishedGameCallbacks: (() => void)[] = [];
+    const restartGameCallbacks: Map<number, (level?: string) => void> = new Map();
+    const nextQuestionCallbacks: Map<number, () => void> = new Map();
+    const finishedGameCallbacks: Map<number, () => void> = new Map();
+
+    const getNewEventsId = () => {
+        eventsIds++;
+        return eventsIds;
+    };
 
     const finishGame = () => {
         isGameWon.value = remainingLives.value > 0;
@@ -31,11 +37,19 @@ export const useAppStore = defineStore('app', () => {
     const resetLives = () => {
         remainingLives.value = MAX_LIVES;
     };
-    const onFinishedGame = (callback: () => void) => {
-        finishedGameCallbacks.push(callback);
+    const onFinishedGame = (callback: () => void, eventsId: number) => {
+        finishedGameCallbacks.set(eventsId, callback);
     };
-    const onNextQuestion = (callback: () => void) => {
-        nextQuestionCallbacks.push(callback);
+    const onNextQuestion = (callback: () => void, eventsId: number) => {
+        nextQuestionCallbacks.set(eventsId, callback);
+    };
+    const onRestartGame = (callback: (level?: string) => void, eventsId: number) => {
+        restartGameCallbacks.set(eventsId, callback);
+    };
+    const removeEvents = (eventsId: number) => {
+        finishedGameCallbacks.delete(eventsId);
+        nextQuestionCallbacks.delete(eventsId);
+        restartGameCallbacks.delete(eventsId);
     };
     const nextQuestion = () => {
         if (isGameLost.value || isGameWon.value) return;
@@ -49,9 +63,6 @@ export const useAppStore = defineStore('app', () => {
                 callback();
             });
         }
-    };
-    const onRestartGame = (callback: () => void) => {
-        restartGameCallbacks.push(callback);
     };
     const resetAll = (restart = false) => {
         resetLives();
@@ -81,6 +92,8 @@ export const useAppStore = defineStore('app', () => {
         onRestartGame,
         onNextQuestion,
         nextQuestion,
-        resetAll
+        resetAll,
+        getNewEventsId,
+        removeEvents
     };
 });

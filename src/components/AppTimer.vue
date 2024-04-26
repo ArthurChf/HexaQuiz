@@ -58,21 +58,25 @@ function start() {
 
 start();
 
+
+const eventsId = appStore.getNewEventsId();
+
 appStore.onFinishedGame(() => {
     reset();
-});
+}, eventsId);
 
 appStore.onRestartGame(() => {
     reset();
     setTimeout(start, 100);
-});
+}, eventsId);
 
 appStore.onNextQuestion(() => {
     reset();
     setTimeout(start, 100);
-});
+}, eventsId);
 
 onUnmounted(() => {
     clearInterval(timerInterval);
+    appStore.removeEvents(eventsId);
 });
 </script>
