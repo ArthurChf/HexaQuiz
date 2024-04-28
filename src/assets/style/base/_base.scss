@@ -23,6 +23,22 @@ html {
 }
 
 
+.fadeSlide-enter-active,
+.fadeSlide-leave-active {
+    transition: transform 0.3s, opacity 0.3s;
+}
+.fadeSlide-enter-from {
+    transform: translateY(-10px);
+}
+.fadeSlide-leave-to {
+    transform: translateY(10px);
+}
+.fadeSlide-enter-from,
+.fadeSlide-leave-to {
+    opacity: 0;
+}
+
+
 .scrollbar::-webkit-scrollbar {
     width: 7px;
     height: 7px;

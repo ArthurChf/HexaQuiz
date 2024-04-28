@@ -12,13 +12,16 @@
 
 <script setup lang="ts">
 import { useAppStore } from '@/stores/appStore';
+import { useSettingsStore } from '@/stores/settingsStore';
+import { storeToRefs } from 'pinia';
 import { onUnmounted, ref } from 'vue';
 
 const PATH_DEFAULT_TRANSITION = '1s linear stroke-dasharray';
 const timerPathTransition = ref(PATH_DEFAULT_TRANSITION);
 
-const TIME_LIMIT = 10;
-const timeLeft = ref(TIME_LIMIT);
+const settingsStore = useSettingsStore();
+const { maxQuestionDuration } = storeToRefs(settingsStore);
+const timeLeft = ref(maxQuestionDuration.value);
 let timerInterval = -1;
 
 const FULL_DASH_ARRAY = 283;
@@ -27,8 +30,8 @@ const timerPathRemaining = ref(`${FULL_DASH_ARRAY}`);
 const appStore = useAppStore();
 
 function calculateTimeFraction() {
-    const rawTimeFraction = timeLeft.value / TIME_LIMIT;
-    return rawTimeFraction - 1 / TIME_LIMIT * (1 - rawTimeFraction);
+    const rawTimeFraction = timeLeft.value / maxQuestionDuration.value;
+    return rawTimeFraction - 1 / maxQuestionDuration.value * (1 - rawTimeFraction);
 }
 
 function setCircleDasharray() {
@@ -38,7 +41,7 @@ function setCircleDasharray() {
 
 function reset() {
     clearInterval(timerInterval);
-    timeLeft.value = TIME_LIMIT;
+    timeLeft.value = maxQuestionDuration.value;
     timerPathTransition.value = 'none';
     timerPathRemaining.value = `${FULL_DASH_ARRAY}`;
 }

@@ -1,0 +1,27 @@
+.form__container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.form__button {
+    cursor: pointer;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    width: fit-content;
+    font-family: var(--font-family-1);
+    font-weight: var(--font-weight-bold);
+    padding: 0.5rem 0.8rem;
+    border-radius: 0.7rem;
+    font-size: var(--font-size-md);
+    color: var(--color-black);
+    background-color: var(--color-light-gray);
+    border: 0.1rem solid var(--color-dark-gray);
+    transition: 0.3s background-color;
+    margin-top: 1.5rem;
+
+    &:hover {
+        background-color: var(--color-gray);
+    }
+}

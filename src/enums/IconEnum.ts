@@ -6,5 +6,6 @@ export enum IconEnum {
     LEARN = 'LEARN',
     SETTINGS = 'SETTINGS',
     HELP = 'HELP',
-    STATS = 'STATS'
+    STATS = 'STATS',
+    RESET = 'RESET'
 }

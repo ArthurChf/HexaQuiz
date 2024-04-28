@@ -1,15 +1,17 @@
-import { defineStore } from 'pinia';
+import { defineStore, storeToRefs } from 'pinia';
 import { ref } from 'vue';
+import { useSettingsStore } from '@/stores/settingsStore';
 
 export const useAppStore = defineStore('app', () => {
-    let eventsIds = 0;
-    const MAX_LIVES = 3;
-    const remainingLives = ref(MAX_LIVES);
+    const settingsStore = useSettingsStore();
+    const { maxLives } = storeToRefs(settingsStore);
+    const remainingLives = ref(maxLives.value);
     const MAX_QUESTIONS = 10;
     const quizProgress = ref(0);
     const remainingQuestions = ref(MAX_QUESTIONS);
     const isGameWon = ref(false);
     const isGameLost = ref(false);
+    let eventsIds = 0;
 
     const restartGameCallbacks: Map<number, (level?: string) => void> = new Map();
     const nextQuestionCallbacks: Map<number, () => void> = new Map();
@@ -35,7 +37,7 @@ export const useAppStore = defineStore('app', () => {
         }
     };
     const resetLives = () => {
-        remainingLives.value = MAX_LIVES;
+        remainingLives.value = maxLives.value;
     };
     const onFinishedGame = (callback: () => void, eventsId: number) => {
         finishedGameCallbacks.set(eventsId, callback);

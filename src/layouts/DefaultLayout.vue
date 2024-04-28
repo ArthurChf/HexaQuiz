@@ -7,12 +7,12 @@
             </div>
         </div>
         <div class="header">
-            <RouterLink :to="pageData.previous" class="header__button" role="button">
+            <RouterLink :to="isHomeRoute ? RouteEnum.SETTINGS : pageData.previous" class="header__button" role="button">
                 <AppIcon :name="isHomeRoute ? IconEnum.SETTINGS : IconEnum.ARROW_LEFT" size="10" />
             </RouterLink>
             <div v-if="isInGame" class="header__center">
                 <div class="lives">
-                    <AppIcon v-for="life in 3" :key="life" :name="IconEnum.HEART" size="13" class="life" :class="life <= remainingLives ? '' : 'life--empty'" />
+                    <AppIcon v-for="life in maxLives" :key="life" :name="IconEnum.HEART" size="13" class="life" :class="life <= remainingLives ? '' : 'life--empty'" />
                 </div>
                 <div class="header__progress">
                     <AppProgressBar :width="quizProgress" />
@@ -71,9 +71,13 @@ import { storeToRefs } from 'pinia';
 import AppGameButton from '@/components/AppGameButton.vue';
 import router from '@/router';
 import AppProgressBar from '@/components/AppProgressBar.vue';
+import { useSettingsStore } from '@/stores/settingsStore';
 
 const appStore = useAppStore();
 const { quizProgress, remainingLives, isGameWon, isGameLost } = storeToRefs(appStore);
+
+const settingsStore = useSettingsStore();
+const { maxLives } = storeToRefs(settingsStore);
 
 const route = useRoute();
 const levelId = computed(() => route.params.levelId as string);
@@ -89,6 +93,9 @@ const routesData: Record<string, RouteDataType> = {
     },
     [RouteEnum.LEVELS_LEARN]: {
         title: 'Apprendre'
+    },
+    [RouteEnum.SETTINGS]: {
+        title: 'Paramètres'
     }
 };
 const pageData = computed(() => {

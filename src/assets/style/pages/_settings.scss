@@ -1,0 +1,32 @@
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    gap: 1rem;
+    min-width: 14rem;
+    max-width: 30rem;
+    width: 100%;
+}
+
+.settings__button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    column-gap: 0.7rem;
+    font-family: var(--font-family-1);
+    user-select: none;
+    width: fit-content;
+    margin-top: 2rem;
+    background-color: var(--color-red-1);
+    border: 0.15rem solid var(--color-red-2);
+    border-radius: 0.8rem;
+    color: var(--color-white);
+    font-weight: var(--font-weight-bold);
+    padding: 0.5rem 0.8rem;
+    font-size: var(--font-size-md);
+    transition: 0.3s background-color;
+
+    &:hover {
+        background-color: var(--color-red-2);
+    }
+}
