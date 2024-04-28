@@ -7,5 +7,8 @@ export enum IconEnum {
     SETTINGS = 'SETTINGS',
     HELP = 'HELP',
     STATS = 'STATS',
-    RESET = 'RESET'
+    RESET = 'RESET',
+    SUCCESS = 'SUCCESS',
+    CLOSE = 'CLOSE',
+    SAVE = 'SAVE'
 }

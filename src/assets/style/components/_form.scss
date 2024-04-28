@@ -9,11 +9,12 @@
     display: flex;
     align-self: center;
     align-items: center;
+    gap: 0.8rem;
     width: fit-content;
     font-family: var(--font-family-1);
     font-weight: var(--font-weight-bold);
     padding: 0.5rem 0.8rem;
-    border-radius: 0.7rem;
+    border-radius: 0.8rem;
     font-size: var(--font-size-md);
     color: var(--color-black);
     background-color: var(--color-light-gray);

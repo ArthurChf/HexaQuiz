@@ -1,5 +1,6 @@
 <template>
     <div class="default-layout">
+        <AppAlert />
         <div class="loading-screen">
             <AppImage :name="ImageEnum.LOGO" alt="Logo" />
             <div class="progress-bar__container">
@@ -21,9 +22,7 @@
             </div>
             <span v-else class="header__title">{{ pageData.title }}</span>
             <AppTimer v-if="isInGame" />
-            <RouterLink v-else :to="RouteEnum.HOME" class="header__button" role="button">
-                <AppIcon :name="IconEnum.HELP" size="10" />
-            </RouterLink>
+            <div v-else></div>
         </div>
         <div class="content scrollbar">
             <Transition :name="TransitionEnum.FADE" mode="out-in">
@@ -72,6 +71,7 @@ import AppGameButton from '@/components/AppGameButton.vue';
 import router from '@/router';
 import AppProgressBar from '@/components/AppProgressBar.vue';
 import { useSettingsStore } from '@/stores/settingsStore';
+import AppAlert from '@/components/AppAlert.vue';
 
 const appStore = useAppStore();
 const { quizProgress, remainingLives, isGameWon, isGameLost } = storeToRefs(appStore);

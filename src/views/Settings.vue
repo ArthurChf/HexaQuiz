@@ -19,6 +19,7 @@ import AppIcon from '@/components/AppIcon.vue';
 import { IconEnum } from '@/enums/IconEnum';
 import { useSettingsStore } from '@/stores/settingsStore';
 import { storeToRefs } from 'pinia';
+import { useAlert } from '@/composables/useAlert';
 
 const settingsStore = useSettingsStore();
 const { maxLives, maxQuestionDuration } = storeToRefs(settingsStore);
@@ -32,9 +33,11 @@ const validationSchemaSettings = {
     lives: yup.number().required().typeError('Nombre de vies requis').min(1, `Le nombre de vies doit être supérieur ou égal à 1`).max(3, `Le nombre de vies doit être inférieur ou égal à 3`)
 };
 
+
 const formSubmitSettings = async (formValues: object) => {
     const yupSchema = yup.object(validationSchemaSettings);
     const { lives, questionDuration } = formValues as yup.InferType<typeof yupSchema>;
     settingsStore.updateSettings({ maxLives: lives, maxQuestionDuration: questionDuration });
+    useAlert('Paramètres modifiés', `Les changements ont bien été enregistrés`);
 };
 </script>

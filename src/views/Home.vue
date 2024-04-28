@@ -12,11 +12,6 @@
                 <template #description>Explore les départements français à travers une expérience éducative divisée par niveaux</template>
             </AppButton>
         </div>
-        <AppButton :to="RouteEnum.HOME" color="orange">
-            <template #badge><AppIcon :name="IconEnum.STATS" size="12" /></template>
-            <template #title>Statistiques</template>
-            <template #description>Consulte tes statistiques, elles représentent tes performances en jeu (pourcentage de réussite, nombre de points, temps moyen par question)</template>
-        </AppButton>
     </div>
 </template>
 

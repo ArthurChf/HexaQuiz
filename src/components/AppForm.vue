@@ -3,13 +3,18 @@
         <div class="form__container">
             <slot :set-form-value="setFormValue" :errors="errors"></slot>
         </div>
-        <button type="submit" class="form__button" :disabled="pending">{{ buttonValue }}</button>
+        <button type="submit" class="form__button" :disabled="pending">
+            <AppIcon :name="IconEnum.SAVE" size="8" />
+            <span>{{ buttonValue }}</span>
+        </button>
     </form>
 </template>
 
 <script setup lang="ts">
 import { reactive } from 'vue';
 import * as yup from 'yup';
+import AppIcon from '@/components/AppIcon.vue';
+import { IconEnum } from '@/enums/IconEnum';
 
 const props = defineProps<{
     buttonValue: string;
