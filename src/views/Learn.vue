@@ -11,5 +11,5 @@ import { useRoute } from 'vue-router';
 import type { QuizDataType } from '@/types/QuizDataType';
 
 const route = useRoute();
-const learnCards = useQuizData(route.params.levelId as string) as QuizDataType[];
+const learnCards = (useQuizData(route.params.levelId as string) as QuizDataType[]).toSorted(() => 0.5 - Math.random());
 </script>
